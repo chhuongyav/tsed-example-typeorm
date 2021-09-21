@@ -16,7 +16,7 @@
     "tsc:w": "tsc --project tsconfig.json -w",
     "start:dev": "nodemon --watch \"src/**/*.ts\" --ignore \"node_modules/**/*\" --exec ts-node src/index.ts",
     "start": "ts-node src/index.ts",
-    "start:prod": "cross-env NODE_ENV=production node dist/index.js",
+    "start:prod": "cross-env NODE_ENV=production node dist/src/index.js",
     "docker:build": "yarn build && docker-compose build",
     "deploy": "exit 0"
   },

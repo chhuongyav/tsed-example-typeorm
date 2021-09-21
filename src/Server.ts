@@ -54,7 +54,7 @@ export const rootDir = __dirname;
       ]
     }
   ],
-  swagger: {
+  swagger: [{
     path: "/api-docs",
     spec: {
       securityDefinitions: {
@@ -63,7 +63,7 @@ export const rootDir = __dirname;
         }
       }
     }
-  }
+  }]
 })
 export class Server {
   @Inject()

@@ -1,8 +1,9 @@
-import {BodyParams, Controller, Get, Post, Req, Status, Returns} from "@tsed/common";
+import {BodyParams, Controller, Get, Post, Req} from "@tsed/common";
 import {Authenticate, Authorize} from "@tsed/passport";
 import {User} from "../../entities/User";
 import {Credentials} from "../../models/Credentials";
 import {UserCreation} from "../../models/UserCreation";
+import { Returns } from '@tsed/schema';
 
 @Controller("/auth")
 export class PassportCtrl {
@@ -12,7 +13,7 @@ export class PassportCtrl {
   @Post("/login")
   @Authenticate("login", {failWithError: false})
   @Returns(200, User)
-  @Returns(400, {description: "Validation error"})
+  @Returns(400).Description("Validation error")
   login(@Req() req: Req, @BodyParams() credentials: Credentials) {
     // FACADE
     return req.user;
@@ -27,7 +28,7 @@ export class PassportCtrl {
   }
 
   @Get("/userinfo")
-  @Authenticate("basic", {security: ["auth:basic"]})
+  @Authenticate("basic", {security: {"auth": ["basic"]}})
   @Returns(200, User)
   getUserInfo(@Req() req: Req): any {
     // FACADE
